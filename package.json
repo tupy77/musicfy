@@ -2,11 +2,17 @@
   "name": "musicfy",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "author": {
+    "name": "Frank PC",
+    "email": "tupy77@hotmail.com"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "electron ."
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
