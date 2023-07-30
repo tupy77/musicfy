@@ -1,14 +1,16 @@
-import React from "react";
-import { Button } from "semantic-ui-react";
-import { getAuth } from "firebase/auth";
+import { useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { LoggedNavigation } from "./routes";
+import { Auth } from "./pages";
 
 export default function App() {
+  const [user, setUser] = useState(undefined);
   const auth = getAuth();
-  console.log(auth);
 
-  return (
-    <div>
-      <Button primary>Primary</Button>
-    </div>
-  );
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
+
+  if (user === undefined) return null;
+  return user ? <LoggedNavigation /> : <Auth />;
 }
