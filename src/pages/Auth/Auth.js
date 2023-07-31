@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import { AuthOptions, LoginForm, RegisterForm } from "../../components";
+
+import { logoWhite } from "../../assets";
 import "./Auth.scss";
 
 export function Auth() {
@@ -39,10 +42,18 @@ export function Auth() {
   };
 
   return (
-    <div>
-      <h1>Auth page</h1>
-      <Button primary>Auth Screen</Button>
-      {renderForm()}
+    <div className="auth">
+      <div className="auth__content">
+        {/* IMAGE */}
+        <Image
+          src={logoWhite}
+          alt="Musicfy"
+          className="auth__content-logo"
+          style={{ width: "100%" }}
+        />
+
+        {renderForm()}
+      </div>
     </div>
   );
 }
