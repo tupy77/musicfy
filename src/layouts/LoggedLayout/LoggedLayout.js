@@ -1,4 +1,5 @@
 import React from "react";
+import { LeftMenu } from "../../components/Layout";
 import "./LoggedLayout.scss";
 
 export function LoggedLayout(props) {
@@ -9,7 +10,7 @@ export function LoggedLayout(props) {
     <div className="logged-layout">
       <div className="logged-layout__content">
         <div className="logged-layout__left-menu">
-          <p>Left menu</p>
+          <LeftMenu />
         </div>
 
         <div className="logged-layout__children-content">
