@@ -1,7 +1,8 @@
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signOut,
+  // signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export class Auth {
@@ -19,10 +20,25 @@ export class Auth {
     }
   }
 
+  async login(email, password) {
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async logout() {
     try {
       const auth = getAuth();
       await auth.signOut();
+      //await signOut(auth);
     } catch (error) {
       throw error;
     }
