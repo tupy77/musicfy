@@ -18,7 +18,7 @@ export function Auth() {
       return (
         <LoginForm
           setTypeForm={setTypeForm}
-          openLoginForm={openLoginForm}
+          openRegisterForm={openRegisterForm}
           goBack={goBack}
         />
       );
@@ -28,7 +28,7 @@ export function Auth() {
       return (
         <RegisterForm
           setTypeForm={setTypeForm}
-          openRegisterForm={openRegisterForm}
+          openLoginForm={openLoginForm}
           goBack={goBack}
         />
       );
