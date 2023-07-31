@@ -8,7 +8,7 @@ export default function App() {
   const auth = getAuth();
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser({ name: "Teste" });
+    setUser(currentUser);
   });
 
   if (user === undefined) return null;
