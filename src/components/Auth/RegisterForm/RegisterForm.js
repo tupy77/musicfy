@@ -3,7 +3,11 @@ import { Form, Icon } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { Auth } from "../../../api";
+
 import "./RegisterForm.scss";
+
+const auth = new Auth();
 
 export function RegisterForm(props) {
   const { openLoginForm, goBack } = props;
@@ -15,7 +19,12 @@ export function RegisterForm(props) {
 
     // validate: (values) => validateForm(values),
     onSubmit: (formData) => {
-      console.log("Enviando formulario", formData);
+      try {
+        auth.register(formData.email, formData.password);
+        console.log("Usuario registrado");
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
