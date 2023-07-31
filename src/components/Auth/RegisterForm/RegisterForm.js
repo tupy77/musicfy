@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Icon } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -11,6 +11,8 @@ const auth = new Auth();
 
 export function RegisterForm(props) {
   const { openLoginForm, goBack } = props;
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -45,13 +47,13 @@ export function RegisterForm(props) {
         />
         <Form.Input
           name="password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Contraseña"
           icon={
             <Icon
-              name="eye"
+              name={showPassword ? "eye slash outline" : "eye"}
               link
-              onClick={() => console.log("mostrar contraseña")}
+              onClick={() => setShowPassword(!showPassword)}
             />
           }
           onChange={formik.handleChange}
