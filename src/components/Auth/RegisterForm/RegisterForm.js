@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Icon } from "semantic-ui-react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 import "./RegisterForm.scss";
 
@@ -9,10 +10,16 @@ export function RegisterForm(props) {
 
   const formik = useFormik({
     initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    // validateOnChange: false,
+
+    // validate: (values) => validateForm(values),
     onSubmit: (formData) => {
       console.log("Enviando formulario", formData);
     },
   });
+
+  console.log(formik.errors);
 
   return (
     <div className="register-form">
@@ -52,7 +59,7 @@ export function RegisterForm(props) {
           error={formik.errors.username && true}
         />
 
-        <Form.Button type="submit" primary fluid>
+        <Form.Button type="submit" primary fluid loading={formik.isSubmitting}>
           Continuar
         </Form.Button>
       </Form>
@@ -69,8 +76,43 @@ export function RegisterForm(props) {
 
 function initialValues() {
   return {
-    email: "", // TIENEN QUE SER EXACTAMENTE IGUALES QUE COMO EL NAME DEL INPUT
+    email: "",
     password: "",
     username: "",
   };
 }
+
+function validationSchema() {
+  return Yup.object({
+    email: Yup.string().email("Email invalido").required("Es obligatorio"),
+    password: Yup.string().required(true).min(6),
+    username: Yup.string().required(true),
+  });
+}
+
+// function validateForm(values) {
+//   let errors = {};
+
+//   // Validar el email
+//   if (!values.email) {
+//     errors.email = true;
+//   } else if (
+//     !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9.-]+).([a-zA-Z]{2,6})$/.test(values.email)
+//   ) {
+//     errors.email = true;
+//   }
+
+//   // Validar el password
+//   if (!values.password) {
+//     errors.password = true;
+//   } else if (values.password.length < 6) {
+//     errors.password = true;
+//   }
+
+//   // Validar el username
+//   if (!values.username) {
+//     errors.username = true;
+//   }
+
+//   return errors;
+// }
