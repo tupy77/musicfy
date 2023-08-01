@@ -1,11 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Auth, User } from "../../../api";
 import { Icon, Image } from "semantic-ui-react";
+import { defaultUser } from "../../../assets";
+
 import "./TopBar.scss";
 
+const auth = new Auth();
+const user = new User();
+
 export function TopBar() {
+  const navigation = useNavigate();
+  const userData = user.getMe();
+
+  const displayName = userData.displayName || userData.email;
+  const photoURL = userData.photoURL || defaultUser;
+
   const goBack = () => {
-    console.log("Go back");
+    navigation(-1);
   };
 
   return (
@@ -14,11 +26,11 @@ export function TopBar() {
 
       <div className="top-bar__right">
         <Link to="/profile">
-          {/* <Image src={} avatar /> */}
-          <span>Nombre Apellido</span>
+          <Image src={photoURL} avatar />
+          <span>{displayName}</span>
         </Link>
 
-        <Icon name="power" onClick={() => console.log("LOGOUT")} link />
+        <Icon name="power" onClick={auth.logout} link />
       </div>
     </div>
   );
