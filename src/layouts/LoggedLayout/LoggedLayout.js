@@ -1,9 +1,8 @@
 import React from "react";
-import { LeftMenu, TopBar } from "../../components/Layout";
+import { LeftMenu, TopBar, Footer } from "../../components/Layout";
 import "./LoggedLayout.scss";
 
 export function LoggedLayout(props) {
-  console.log(props);
   const { children } = props; //Los props son los hijos que se le pasan al componente, en este caso son las rutas
 
   return (
@@ -24,7 +23,7 @@ export function LoggedLayout(props) {
       </div>
 
       <div className="logged-layout__footer">
-        <h1>Footer</h1>
+        <Footer />
       </div>
     </div>
   );
