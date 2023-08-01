@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.scss";
 import { Image, Input, Icon } from "semantic-ui-react";
-import { Player } from "../../Shared";
+import { Player } from "../../";
 
 export function Footer() {
   return (

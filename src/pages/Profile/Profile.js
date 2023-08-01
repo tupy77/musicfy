@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
+import { AvatarUpdate } from "../../components";
 import { User } from "../../api";
-import { defaultUser } from "../../assets";
 import "./Profile.scss";
 
 const user = new User();
@@ -9,7 +9,7 @@ const user = new User();
 export function Profile() {
   const userData = user.getMe();
 
-  const { displayName, email, photoURL } = userData;
+  const { displayName, email } = userData;
 
   return (
     <div className="profile">
@@ -17,7 +17,7 @@ export function Profile() {
 
       <div className="profile__block">
         <div>
-          <p>{photoURL || defaultUser}</p>
+          <AvatarUpdate />
           <span>{displayName || "Sin nombre"}</span>
         </div>
         <Button primary onClick={() => console.log("Cambiar displayName")}>
