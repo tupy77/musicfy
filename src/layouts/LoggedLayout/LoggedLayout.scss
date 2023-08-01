@@ -1,7 +1,7 @@
 @import "~/src/scss/index";
 
 $footerHeight: 100px;
-$menu-width: 300px;
+$menuWight: 300px;
 
 .logged-layout {
   height: 100vh;
@@ -14,11 +14,12 @@ $menu-width: 300px;
 
   &__left-menu {
     background-color: $background-dark;
-    width: $menu-width;
+    width: $menuWight;
   }
 
-  &__chidren-content {
-    width: calc(100% - $menu-width);
+  &__children-content {
+    width: calc(100% - $menuWight);
+    overflow: scroll;
 
     &::-webkit-scrollbar {
       display: none;
@@ -34,8 +35,8 @@ $menu-width: 300px;
 
   &__footer {
     position: relative;
-    height: $footerHeight;
     background-color: $background-primary;
+    height: $footerHeight;
     border-top: 1px solid $border-primary;
     box-shadow: 0px 0px 20px -5px $background-dark;
     z-index: 1;
