@@ -22,7 +22,20 @@ export function LoginForm(props) {
       try {
         await auth.login(formData.email, formData.password);
       } catch (error) {
-        console.log(error);
+        if (error.code === "auth/user-not-found") {
+          formik.setErrors({
+            email: "EL USUARIO NO EXISTE",
+            password: true,
+          });
+        }
+
+        if (error.code === "auth/wrong-password") {
+          formik.setErrors({
+            password: "LA CONTRASEÑA ES INCORRECTA",
+          });
+        } else {
+          console.log(error);
+        }
       }
     },
   });
@@ -39,7 +52,7 @@ export function LoginForm(props) {
           icon={<Icon name="mail outline" />}
           onChange={formik.handleChange}
           value={formik.values.email}
-          error={formik.errors.email && true}
+          error={formik.errors.email}
         />
         <Form.Input
           name="password"
@@ -54,7 +67,7 @@ export function LoginForm(props) {
           }
           onChange={formik.handleChange}
           value={formik.values.password}
-          error={formik.errors.password && true}
+          error={formik.errors.password}
         />
 
         <Form.Button type="submit" primary fluid loading={formik.isSubmitting}>

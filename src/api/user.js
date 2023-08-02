@@ -23,7 +23,7 @@ export class User {
     }
   }
 
-  async updateDisplayName(displayName) {
+  async updateNameUser(displayName) {
     try {
       const auth = getAuth();
       await updateProfile(auth.currentUser, {
