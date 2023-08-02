@@ -4,27 +4,47 @@ import { Form, Image } from "semantic-ui-react";
 //import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import classNames from "classnames";
+import { Storage, Artist } from "../../../api";
+import { v4 as uuidv4 } from "uuid";
+
 import * as Yup from "yup";
 import "./NewArtistForm.scss";
 import { noImage } from "../../../assets";
+
+const storageController = new Storage();
+const artistController = new Artist();
 
 export function NewArtistForm(props) {
   const { onClose } = props;
   const [image, setImage] = useState(null);
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    const file = acceptedFiles[0];
+  const onDrop = useCallback(async (acceptedFile) => {
+    const file = acceptedFile[0];
     setImage(URL.createObjectURL(file));
     formik.setFieldValue("file", file);
-  }, []);
+  });
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: async (formData) => {
-      console.log(formData);
+    onSubmit: async (formValue) => {
+      try {
+        const { file, name } = formValue;
+        const response = await storageController.uploadFile(
+          file,
+          "artist",
+          uuidv4()
+        );
+        const url = await storageController.getUrlFile(
+          response.metadata.fullPath
+        );
+        await artistController.create(url, name);
+        onClose();
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
