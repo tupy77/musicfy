@@ -17,6 +17,9 @@ export function AvatarUpdate() {
     setAvatarUrl(URL.createObjectURL(file));
 
     const response = await storageController.uploadFile(file, "avatar", uid);
+    const url = await storageController.getUrlFile(response.metadata.fullPath);
+
+    await userController.updateAvatarUser(url);
   });
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
