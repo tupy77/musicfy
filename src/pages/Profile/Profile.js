@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
-import { AvatarUpdate } from "../../components";
+import { AvatarUpdate, DisplayNameUpdateForm } from "../../components";
 import { BasicModal } from "../../components/Shared";
 import { User } from "../../api";
 import "./Profile.scss";
@@ -25,7 +25,7 @@ export function Profile() {
     switch (type) {
       case "name":
         setTitleModal("Actualizar Nombre");
-        setContentModal(<h2>Formulario para actualizar nombre</h2>);
+        setContentModal(<DisplayNameUpdateForm onClose={onCloseModal} />);
         setShowModal(true);
         break;
       case "email":
