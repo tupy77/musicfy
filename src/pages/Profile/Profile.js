@@ -17,8 +17,8 @@ export function Profile() {
 
   const onCloseModal = () => {
     setShowModal(false);
-    setContentModal(null);
     setTitleModal("");
+    setContentModal(null);
   };
 
   const openForm = (type) => {

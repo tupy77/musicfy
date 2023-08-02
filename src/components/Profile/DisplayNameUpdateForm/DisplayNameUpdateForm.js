@@ -13,8 +13,13 @@ export function DisplayNameUpdateForm(props) {
   const formik = useFormik({
     initialValues: initialValues(displayName),
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: (formData) => {
-      console.log(formData);
+    onSubmit: async (formData) => {
+      try {
+        await userController.updateNameUser(formData.displayName);
+        onClose();
+      } catch (error) {
+        throw error;
+      }
     },
   });
 
