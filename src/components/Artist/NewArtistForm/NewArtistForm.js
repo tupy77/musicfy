@@ -13,7 +13,9 @@ export function NewArtistForm(props) {
   const [image, setImage] = useState(null);
 
   const onDrop = useCallback(async (acceptedFiles) => {
-    console.log(acceptedFiles);
+    const file = acceptedFiles[0];
+    setImage(URL.createObjectURL(file));
+    formik.setFieldValue("file", file);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -38,7 +40,7 @@ export function NewArtistForm(props) {
           <input {...getInputProps()} />
           <Image
             src={image || noImage}
-            className={classNames({ full: image })}
+            // className={classNames({ full: image })}
           />
         </div>
         <Form.Input
