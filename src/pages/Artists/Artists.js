@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Artist } from "../../api";
+import { ListArtists } from "../../components";
+
+import "./Artists.scss";
 
 const artistController = new Artist();
 
@@ -18,8 +21,9 @@ export function Artists() {
   }, []);
 
   return (
-    <div>
+    <div className="artist-page">
       <h1>Artists</h1>
+      <ListArtists artists={artists} />
     </div>
   );
 }
