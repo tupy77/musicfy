@@ -30,7 +30,7 @@ export function ListArtists(props) {
             key={artist.id}
             className="list-artists__artist"
             as={Link}
-            to={`/artist/${artist.id}`}
+            to={`/artists/${artist.id}`}
             mobile={8}
             tablet={4}
             computer={3}
