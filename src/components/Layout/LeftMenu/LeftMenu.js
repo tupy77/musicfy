@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import { BasicModal } from "../../Shared";
 import { NewArtistForm } from "../../Artist";
+import { AddAlbumForm } from "../../Albums";
 import "./LeftMenu.scss";
 
 export function LeftMenu() {
@@ -65,7 +66,9 @@ export function LeftMenu() {
             name="Nueva album"
             icon="plus circle"
             link
-            onClick={() => openModal("Nuevo album", <h2>Formulario</h2>)}
+            onClick={() =>
+              openModal("Nuevo album", <AddAlbumForm onClose={closeModal} />)
+            }
           />
           <Menu.Item
             name="Nueva artista"

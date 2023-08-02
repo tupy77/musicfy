@@ -5,7 +5,6 @@
         background-color: $background-secondary;
         border-color: $background-secondary;
         color: $font-light;
-        transition: all 0.3s ease-in-out;
 
         &:hover,
         &:active,
@@ -16,6 +15,43 @@
 
       i {
         color: $font-light;
+      }
+    }
+
+    .dropdown {
+      background-color: $background-secondary !important;
+      border-color: $border-primary !important;
+
+      &:hover {
+        .menu {
+          border-color: $border-primary !important;
+        }
+      }
+
+      input {
+        background-color: $background-secondary !important;
+        border-color: $border-primary !important;
+        color: $font-light !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $background-secondary !important;
+        }
+      }
+
+      .menu {
+        background-color: $background-secondary;
+        border-color: $border-primary;
+
+        .item {
+          border-color: $border-primary;
+        }
+
+        .message {
+          color: $font-light;
+          opacity: 0.6;
+        }
       }
     }
 
@@ -32,8 +68,6 @@
         background-color: $background-secondary;
         border: 1px solid $danger;
         color: $danger;
-        box-shadow: 0px 0px 0px 1px $danger;
-        border-color: $danger;
       }
 
       i {

@@ -1,0 +1,31 @@
+import {
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  getDoc,
+  where,
+  query,
+  limit,
+  orderBy,
+} from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { map } from "lodash";
+import { db } from "../utils";
+
+export class Album {
+  collectionName = "albums";
+
+  async create(name, image, artist) {
+    try {
+      const id = uuidv4();
+      const created_at = new Date();
+      const data = { id, name, image, artist, created_at };
+
+      const docRef = doc(db, this.collectionName, id);
+      await setDoc(docRef, data);
+    } catch (error) {
+      throw error;
+    }
+  }
+}
