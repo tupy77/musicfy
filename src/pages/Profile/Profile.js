@@ -4,6 +4,7 @@ import {
   AvatarUpdate,
   DisplayNameUpdateForm,
   EmailUpdateForm,
+  PasswordUpdateForm,
 } from "../../components";
 import { BasicModal } from "../../components/Shared";
 import { User } from "../../api";
@@ -39,7 +40,7 @@ export function Profile() {
         break;
       case "password":
         setTitleModal("Actualizar Contraseña");
-        setContentModal(<h2>Formulario para actualizar contraseña</h2>);
+        setContentModal(<PasswordUpdateForm onClose={onCloseModal} />);
         setShowModal(true);
         break;
       default:

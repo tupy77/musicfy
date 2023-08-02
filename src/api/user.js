@@ -4,15 +4,12 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
   updateEmail,
+  updatePassword,
 } from "firebase/auth";
 
 export class User {
   getMe() {
-    try {
-      return getAuth().currentUser;
-    } catch (error) {
-      throw error;
-    }
+    return getAuth().currentUser;
   }
 
   async updateAvatarUser(url) {
@@ -26,7 +23,7 @@ export class User {
     }
   }
 
-  async updateNameUser(displayName) {
+  async updateDisplayName(displayName) {
     try {
       const auth = getAuth();
       await updateProfile(auth.currentUser, {
@@ -45,6 +42,19 @@ export class User {
       const credentials = EmailAuthProvider.credential(email, password);
       await reauthenticateWithCredential(auth.currentUser, credentials);
       await updateEmail(auth.currentUser, newEmail);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateUserPassword(password, newPassword) {
+    try {
+      const auth = getAuth();
+      const email = auth.currentUser.email;
+
+      const credential = EmailAuthProvider.credential(email, password);
+      await reauthenticateWithCredential(auth.currentUser, credential);
+      await updatePassword(auth.currentUser, newPassword);
     } catch (error) {
       throw error;
     }
