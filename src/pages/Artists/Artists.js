@@ -21,7 +21,7 @@ export function Artists() {
   }, []);
 
   return (
-    <div className="artist-page">
+    <div className="artists-page">
       <h1>Artists</h1>
       <ListArtists artists={artists} />
     </div>

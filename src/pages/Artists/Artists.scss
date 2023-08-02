@@ -1,6 +1,6 @@
 @import "~/src/scss/index";
 
-.artist-page {
+.artists-page {
   margin: 20px 40px;
 
   > h1 {
@@ -9,14 +9,5 @@
     border-bottom: 1px solid $border-primary;
     padding-bottom: 10px;
     margin-bottom: 50px;
-  }
-  .artist-page__header {
-    margin-bottom: 2rem;
-  }
-
-  .artist-page__content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
 }
