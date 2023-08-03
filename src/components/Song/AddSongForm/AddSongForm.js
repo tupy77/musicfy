@@ -1,25 +1,46 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Form, Icon } from "semantic-ui-react";
-import { useDropzone } from "react-dropzone";
+import classNames from "classnames";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useDropzone } from "react-dropzone";
+import { map } from "lodash";
+import { Album } from "../../../api";
 import "./AddSongForm.scss";
-import classNames from "classnames";
+
+const albumController = new Album();
 
 export function AddSongForm() {
   const [songName, setSongName] = useState("");
+  const [albumsOptions, setAlbumsOptions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await albumController.obtainAll();
+        const result = map(response, (item) => ({
+          key: item.id,
+          value: item.id,
+          text: item.name,
+        }));
+        setAlbumsOptions(result);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   const formik = useFormik({
     initialValues: initialValues(),
-    validationSchema: Yup.object(validationSchema()),
-    onSubmit: async (formData) => {
-      console.log(formData);
+    validationSchema: validationSchema(),
+    validateOnChange: false,
+    onSubmit: async (formValue) => {
+      console.log(formValue);
     },
   });
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    // console.log(file);
+  const onDrop = useCallback(async (acceptedFile) => {
+    const file = acceptedFile[0];
     setSongName(file.name);
     formik.setFieldValue("file", file);
     formik.setFieldValue("name", file.name);
@@ -31,7 +52,7 @@ export function AddSongForm() {
     <Form className="add-song-form" onSubmit={formik.handleSubmit}>
       <Form.Input
         name="name"
-        placeholder="Nombre de la canción"
+        placeholder="Nombre de la cación"
         value={formik.values.name}
         onChange={formik.handleChange}
         error={formik.errors.name}
@@ -41,7 +62,10 @@ export function AddSongForm() {
         fluid
         search
         selection
-        options={[]}
+        options={albumsOptions}
+        value={formik.values.album}
+        onChange={(_, data) => formik.setFieldValue("album", data.value)}
+        error={formik.errors.album}
       />
 
       <div
@@ -76,9 +100,9 @@ function initialValues() {
 }
 
 function validationSchema() {
-  return {
+  return Yup.object({
     name: Yup.string().required(true),
     album: Yup.string().required(true),
     file: Yup.string().required(true),
-  };
+  });
 }
