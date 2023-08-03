@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; //PARA OBTENER LOS PARAMETROS DE LA URL
 import { Artist as ArtistController, Album } from "../../api";
 import { ArtistBanner } from "../../components/Artist";
+import { Slider } from "../../components/Shared";
 
 import "./Artist.scss";
 
@@ -45,6 +46,7 @@ export function Artist(props) {
       <ArtistBanner artist={artists} />
       <div className="artist-page__slider">
         <h2>Albumes</h2>
+        <Slider data={albums} basePath="albums"></Slider>
       </div>
       <div className="artist-page__slider">
         <h2>Canciones</h2>
