@@ -4,3 +4,4 @@ export * from "./storage";
 export * from "./artist";
 export * from "./artistCopilot";
 export * from "./album";
+export * from "./song";
