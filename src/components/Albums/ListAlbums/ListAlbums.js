@@ -26,7 +26,7 @@ export function ListAlbums(props) {
             className="list-albums__album"
           >
             <Image src={album.image} alt={album.name} />
-            <h1>{album.name}</h1>
+            <p>{album.name}</p>
           </Grid.Column>
         ))}
       </Grid.Row>
