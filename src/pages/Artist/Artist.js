@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; //PARA OBTENER LOS PARAMETROS DE LA URL
-import { Artist as ArtistController } from "../../api";
+import { Artist as ArtistController, Album } from "../../api";
 import { ArtistBanner } from "../../components/Artist";
 
 import "./Artist.scss";
 
 const artistController = new ArtistController();
+const albumController = new Album();
 
 export function Artist(props) {
   // const params = useParams();
   // console.log(params);
   const { id } = useParams();
   const [artists, setArtists] = useState(null);
+  const [albums, setAlbums] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -24,13 +26,25 @@ export function Artist(props) {
     })();
   }, [id]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await albumController.getAlbumsByArtist(id);
+        // console.log(response);
+        setAlbums(response);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [id]);
+
   if (!artists) return null;
 
   return (
     <div className="artist-page">
       <ArtistBanner artist={artists} />
       <div className="artist-page__slider">
-        <h2>Albunes</h2>
+        <h2>Albumes</h2>
       </div>
       <div className="artist-page__slider">
         <h2>Canciones</h2>
