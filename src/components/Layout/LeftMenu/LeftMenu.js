@@ -4,6 +4,7 @@ import { Menu } from "semantic-ui-react";
 import { BasicModal } from "../../Shared";
 import { NewArtistForm } from "../../Artist";
 import { AddAlbumForm } from "../../Albums";
+import { AddSongForm } from "../../Song";
 import "./LeftMenu.scss";
 
 export function LeftMenu() {
@@ -60,7 +61,7 @@ export function LeftMenu() {
             name="Nueva cancion"
             icon="plus"
             link
-            onClick={() => openModal("Nueva cancion", <h2>Formulario</h2>)}
+            onClick={() => openModal(<AddSongForm onClose={closeModal} />)}
           />
           <Menu.Item
             name="Nueva album"
