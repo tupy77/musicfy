@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Album } from "../../api";
+import { ListAlbums } from "../../components/Albums";
+import "./Albums.scss";
 
 const albumController = new Album();
 
@@ -19,8 +21,9 @@ export function Albums() {
   }, []);
 
   return (
-    <div>
-      <h1>Albums</h1>
+    <div className="albums-page">
+      <h1>Albumes</h1>
+      <ListAlbums albums={albums} />
     </div>
   );
 }

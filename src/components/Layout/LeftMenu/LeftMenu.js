@@ -48,7 +48,7 @@ export function LeftMenu() {
 
           <Link to="/albums">
             <Menu.Item
-              name="Albunes"
+              name="Albumes"
               icon="window maximize outline"
               active={isCurrentPage("/albums")}
             />
