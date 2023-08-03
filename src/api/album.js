@@ -1,4 +1,4 @@
-import { doc, setDoc, getDocs, collection } from "firebase/firestore";
+import { doc, setDoc, getDocs, collection, getDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { map } from "lodash";
 import { db } from "../utils";
@@ -30,6 +30,19 @@ export class Album {
       // return data;
 
       return map(snapshot.docs, (doc) => doc.data());
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAlbum(id) {
+    try {
+      const docRef = doc(db, this.collectionName, id);
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        return snapshot.data();
+      }
+      return null;
     } catch (error) {
       throw error;
     }

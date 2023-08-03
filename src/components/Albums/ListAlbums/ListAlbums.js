@@ -6,7 +6,7 @@ import "./ListAlbums.scss";
 
 export function ListAlbums(props) {
   const { albums } = props;
-  console.log(albums);
+  // console.log(albums);
 
   if (size(albums) === 0)
     return (
