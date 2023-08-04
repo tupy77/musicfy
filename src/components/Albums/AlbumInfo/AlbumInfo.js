@@ -16,7 +16,7 @@ export function AlbumInfo(props) {
     (async () => {
       try {
         const response = await artistController.getArtist(artist);
-        console.log(response);
+        // console.log(response);
         setArtistData(response);
       } catch (error) {
         console.error(error);

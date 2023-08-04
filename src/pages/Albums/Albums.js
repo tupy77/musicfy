@@ -12,7 +12,7 @@ export function Albums() {
     (async () => {
       try {
         const response = await albumController.obtainAll();
-        console.log(response);
+        // console.log(response);
         setAlbums(response);
       } catch (error) {
         throw error;
