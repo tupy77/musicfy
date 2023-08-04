@@ -53,15 +53,13 @@ export function Artist(props) {
               return {
                 ...song,
                 album: album.name,
-                albumImage: album.image,
+                image: album.image,
               };
             });
 
-            arrayAlbums.push(...dataTemp); //Los tres puntos son para tener un array de objetos, no un array de arrays
-            // arrayAlbums.push(response);
+            arrayAlbums.push(...dataTemp);
           }
-
-          console.log(arrayAlbums);
+          // console.log(arrayAlbums);
           setSongs(arrayAlbums);
         } catch (error) {
           console.error(error);
@@ -81,6 +79,7 @@ export function Artist(props) {
       </div>
       <div className="artist-page__slider">
         <h2>Canciones</h2>
+        <Slider data={songs} basePath="songs"></Slider>
       </div>
     </div>
   );
