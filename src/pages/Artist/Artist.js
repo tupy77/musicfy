@@ -79,7 +79,7 @@ export function Artist(props) {
       </div>
       <div className="artist-page__slider">
         <h2>Canciones</h2>
-        <Slider data={songs} basePath="songs"></Slider>
+        <Slider data={songs} song></Slider>
       </div>
     </div>
   );
