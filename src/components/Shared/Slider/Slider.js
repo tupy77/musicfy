@@ -11,6 +11,7 @@ const settings = {
   slidesToShow: 5,
   swipToSlide: true,
   centerMode: true,
+  adaptiveHeight: true,
 };
 
 export function Slider(props) {
@@ -19,14 +20,12 @@ export function Slider(props) {
   return (
     <Slick {...settings} className="slider">
       {map(data, (item) => {
-        counter++;
         return (
           <Link
             to={`/${basePath}/${item.id}`}
             key={item.id}
             className="slider__item"
           >
-            <p>Soy el elemento: {counter}</p>
             <Image src={item.image} alt={item.name} />
             <h3>{item.name}</h3>
           </Link>
