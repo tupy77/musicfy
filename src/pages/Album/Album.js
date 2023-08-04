@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Loader } from "semantic-ui-react";
 import { Album as AlbumControler, Song as SongController } from "../../api";
 
-import { AlbumInfo } from "../../components";
+import { AlbumInfo, ListSongs } from "../../components";
 import "./Album.scss";
 
 const songController = new SongController();
@@ -30,7 +30,7 @@ export function Album() {
     const getSongs = async () => {
       try {
         const songs = await songController.obtainAllByAlbum(id);
-        console.log(songs);
+        // console.log(songs);
         setSongs(songs);
       } catch (error) {
         console.log(error);
@@ -49,6 +49,7 @@ export function Album() {
   return (
     <div className="album-page">
       <AlbumInfo album={album} />
+      <ListSongs songs={songs} albumImage={album.image[0].url} />
     </div>
   );
 }
