@@ -7,7 +7,7 @@ export function PlayerProvider(props) {
   const [song, setSong] = useState([]);
   const [miniature, setMiniature] = useState(null);
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
 
   const playSong = (newSong, newMiniature) => {
     // Reproducir canción
@@ -33,6 +33,7 @@ export function PlayerProvider(props) {
     playSong,
     pause,
     resume,
+    setVolume,
 
     song,
     miniature,

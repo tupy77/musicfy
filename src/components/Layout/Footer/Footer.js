@@ -5,7 +5,7 @@ import { Image, Input, Icon } from "semantic-ui-react";
 import { Player } from "../../";
 
 export function Footer() {
-  const { song, miniature } = usePlayer();
+  const { song, miniature, volume, setVolume } = usePlayer();
 
   return (
     <div className="footer">
@@ -26,6 +26,8 @@ export function Footer() {
           min={0}
           max={1}
           step={0.01}
+          value={volume}
+          onChange={(_, data) => setVolume(Number(data.value))}
         />
       </div>
     </div>
