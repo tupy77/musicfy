@@ -1,8 +1,8 @@
 import React from "react";
+import { Image, Input, Icon } from "semantic-ui-react";
+import { Player } from "../../Shared";
 import { usePlayer } from "../../../hooks";
 import "./Footer.scss";
-import { Image, Input, Icon } from "semantic-ui-react";
-import { Player } from "../../";
 
 export function Footer() {
   const { song, miniature, volume, setVolume } = usePlayer();
@@ -11,8 +11,7 @@ export function Footer() {
     <div className="footer">
       <div className="footer__left">
         {miniature && <Image src={miniature} />}
-        <br></br>
-        {song && <p>{song}</p>}
+        {song && <p>{song.name}</p>}
       </div>
 
       <div className="footer__center">

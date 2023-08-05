@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { usePlayer } from "../../../hooks";
 import { Image, Icon } from "semantic-ui-react";
 import Slick from "react-slick";
 import { map } from "lodash";
+import { Link } from "react-router-dom";
+import { usePlayer } from "../../../hooks";
 import "./Slider.scss";
 
 const settings = {
   dots: false,
   infinite: true,
   slidesToShow: 5,
-  swipToSlide: true,
+  swipeToSlide: true,
   centerMode: true,
   adaptiveHeight: true,
 };
@@ -24,7 +24,6 @@ export function Slider(props) {
 
   useEffect(() => {
     if (itemRef.current) {
-      // console.log(itemRef.current);
       setSize(itemRef.current.clientWidth);
     }
   }, [loadCompleted]);
@@ -45,9 +44,9 @@ export function Slider(props) {
                 <Image
                   src={item.image}
                   alt={item.name}
-                  style={{ heigth: size }}
+                  style={{ height: size }}
                 />
-                <Icon name="play circle outline" size="huge" />
+                <Icon name="play circle outline" />
               </div>
               <h3>{item.name}</h3>
             </div>
@@ -62,7 +61,7 @@ export function Slider(props) {
             ref={itemRef}
             onLoad={() => setLoadCompleted(true)}
           >
-            <Image src={item.image} alt={item.name} style={{ heigth: size }} />
+            <Image src={item.image} alt={item.name} style={{ height: size }} />
             <h3>{item.name}</h3>
           </Link>
         );

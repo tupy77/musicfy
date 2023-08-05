@@ -1,33 +1,22 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 
 export const PlayerContext = createContext({});
 
 export function PlayerProvider(props) {
   const { children } = props;
-  const [song, setSong] = useState([]);
+  const [song, setSong] = useState(null);
   const [miniature, setMiniature] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
 
-  const playSong = (newSong, newMiniature) => {
-    // Reproducir canción
-    console.log(newSong);
-    console.log(newMiniature);
-
-    setSong(newSong.name);
-    setMiniature(newMiniature);
-    setPlaying(true);
-    // setSong(newSong);
-    // setMiniature(newMiniature);
-  };
-
-  const pause = () => {
-    setPlaying(false);
-  };
-
-  const resume = () => {
+  const playSong = (songData, miniatureData) => {
+    setSong(songData);
+    setMiniature(miniatureData);
     setPlaying(true);
   };
+
+  const pause = () => setPlaying(false);
+  const resume = () => setPlaying(true);
 
   const data = {
     playSong,
