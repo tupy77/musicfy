@@ -14,6 +14,7 @@ function createWindow() {
     title: "Musicfy",
     // titleBarStyle: "hiddenInset",
     resizable: false,
+    kiosk: true,
   });
   mainWindow.loadURL(
     isDev
