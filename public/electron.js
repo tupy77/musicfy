@@ -14,6 +14,7 @@ function createWindow() {
     title: "Musicfy by Franci",
     titleBarStyle: "hiddenInset",
     resizable: false,
+    icon: path.join(__dirname, "logo-green.ico"),
     // kiosk: true,
   });
   mainWindow.loadURL(

@@ -1,6 +1,6 @@
 {
   "name": "musicfy",
-  "version": "1",
+  "version": "1.0.0",
   "private": true,
   "main": "public/electron.js",
   "author": {
@@ -44,18 +44,19 @@
   "devDependencies": {
     "concurrently": "^8.2.0",
     "electron": "^25.3.2",
+    "electron-builder": "^24.6.3",
     "wait-on": "^7.0.1"
   },
   "build": {
     "appId": "com.frankpc.musicfy",
     "files": [
-        "build/**/*",
-        "node_modules/**/*"
+      "build/**/*",
+      "node_modules/**/*"
     ],
     "directories": {
-        "buildResources": "assets"
+      "buildResources": "assets"
     }
-},
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
