@@ -13,7 +13,7 @@ function createWindow() {
     height: 720,
     title: "Musicfy",
     // titleBarStyle: "hiddenInset",
-    // resizable: false,
+    resizable: false,
   });
   mainWindow.loadURL(
     isDev
