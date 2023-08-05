@@ -12,7 +12,7 @@ function createWindow() {
     width: 1280,
     height: 720,
     title: "Musicfy by Franci",
-    // titleBarStyle: "hiddenInset",
+    titleBarStyle: "hiddenInset",
     resizable: false,
     // kiosk: true,
   });
