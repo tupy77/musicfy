@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { usePlayer } from "../../../hooks";
 import { Image, Icon } from "semantic-ui-react";
 import Slick from "react-slick";
 import { map } from "lodash";
@@ -19,6 +20,7 @@ export function Slider(props) {
   const [size, setSize] = useState(0);
   const [loadCompleted, setLoadCompleted] = useState(false);
   const itemRef = useRef();
+  const { playSong } = usePlayer();
 
   useEffect(() => {
     if (itemRef.current) {
@@ -37,7 +39,7 @@ export function Slider(props) {
               className="slider__item"
               ref={itemRef}
               onLoad={() => setLoadCompleted(true)}
-              onClick={console.log("Reproduciendo cancion")}
+              onClick={() => playSong(item, item.image)}
             >
               <div className="slider__item-block-play">
                 <Image

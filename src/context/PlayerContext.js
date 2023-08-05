@@ -11,6 +11,11 @@ export function PlayerProvider(props) {
 
   const playSong = (newSong, newMiniature) => {
     // Reproducir canción
+    console.log(newSong);
+    console.log(newMiniature);
+
+    setSong(newSong.name);
+    setMiniature(newMiniature);
     // setSong(newSong);
     // setMiniature(newMiniature);
     // setPlaying(true);

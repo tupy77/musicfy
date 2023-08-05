@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Artist, Album, Song } from "../../api";
-import { usePlayer } from "../../hooks";
 
 import { Slider } from "../../components/Shared";
 import { bannerHome } from "../../assets";
@@ -14,8 +13,6 @@ export function Home() {
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [songs, setSongs] = useState([]);
-
-  console.log(usePlayer());
 
   useEffect(() => {
     (async () => {
