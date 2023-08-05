@@ -22,7 +22,7 @@ export function Slider(props) {
 
   useEffect(() => {
     if (itemRef.current) {
-      console.log(itemRef.current);
+      // console.log(itemRef.current);
       setSize(itemRef.current.clientWidth);
     }
   }, [loadCompleted]);
