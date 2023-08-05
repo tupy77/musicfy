@@ -1,4 +1,13 @@
-import { setDoc, doc, collection, getDocs, getDoc } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  collection,
+  getDocs,
+  getDoc,
+  limit,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { map } from "lodash";
 
@@ -37,6 +46,20 @@ export class Artist {
       // const docSnap = await getDocs(docRef);
       // return docSnap.data();
       return snapshot.data();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getLastArtists(limitArtist = 20) {
+    try {
+      const docRef = collection(db, this.collectionName);
+      const limitRef = limit(limitArtist);
+      const orderByRef = orderBy("created_at", "desc");
+      const qRef = query(docRef, orderByRef, limitRef);
+
+      const snapshot = await getDocs(qRef);
+      return map(snapshot.docs, (doc) => ({ ...doc.data() }));
     } catch (error) {
       throw error;
     }

@@ -16,30 +16,48 @@ const settings = {
 
 export function Slider(props) {
   const { data, basePath, song } = props;
+  const [size, setSize] = useState(0);
+  const itemRef = useRef();
+
+  useEffect(() => {
+    if (itemRef.current) {
+      console.log(itemRef.current);
+      setSize(itemRef.current.clientWidth);
+    }
+  }, []);
 
   return (
     <Slick {...settings} className="slider">
       {map(data, (item) => {
         if (song) {
-          <div
-            key={item.id}
-            className="slider__item"
-            onClick={console.log("Reproduciendo cancion")}
-          >
-            <div className="slider__item-block-play">
-              <Image src={item.image} alt={item.name} />
-              <Icon name="play circle outline" size="huge" />
+          return (
+            <div
+              key={item.id}
+              className="slider__item"
+              ref={itemRef}
+              onClick={console.log("Reproduciendo cancion")}
+            >
+              <div className="slider__item-block-play">
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  style={{ heigth: size }}
+                />
+                <Icon name="play circle outline" size="huge" />
+              </div>
+              <h3>{item.name}</h3>
             </div>
-            <h3>{item.name}</h3>
-          </div>;
+          );
         }
+
         return (
           <Link
             to={`/${basePath}/${item.id}`}
             key={item.id}
             className="slider__item"
+            ref={itemRef}
           >
-            <Image src={item.image} alt={item.name} />
+            <Image src={item.image} alt={item.name} style={{ heigth: size }} />
             <h3>{item.name}</h3>
           </Link>
         );

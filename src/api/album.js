@@ -6,6 +6,8 @@ import {
   getDoc,
   query,
   where,
+  limit,
+  orderBy,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { map } from "lodash";
@@ -61,6 +63,20 @@ export class Album {
       const whereRef = where("artist", "==", idArtist);
       const collectionRef = collection(db, this.collectionName);
       const queryRef = query(collectionRef, whereRef);
+
+      const snapshot = await getDocs(queryRef);
+      return map(snapshot.docs, (doc) => doc.data());
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getLastAlbums(limitAlbums = 20) {
+    try {
+      const collectionRef = collection(db, this.collectionName);
+      const limitRef = limit(limitAlbums);
+      const orderByRef = orderBy("created_at", "desc");
+      const queryRef = query(collectionRef, orderByRef, limitRef);
 
       const snapshot = await getDocs(queryRef);
       return map(snapshot.docs, (doc) => doc.data());
