@@ -11,10 +11,10 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
-    title: "Musicfy",
+    title: "Musicfy by Franci",
     // titleBarStyle: "hiddenInset",
     resizable: false,
-    kiosk: true,
+    // kiosk: true,
   });
   mainWindow.loadURL(
     isDev
