@@ -42,8 +42,17 @@ export function Home() {
     (async () => {
       try {
         const response = await songController.getLastSongs(8);
-        // console.log(response);
-        setSongs(response);
+
+        let data = [];
+        for await (const item of response) {
+          const song = item;
+          const resultAlbum = await albumController.getAlbum(item.album);
+          song.image = resultAlbum.image;
+          data.push(song);
+        }
+
+        // console.log(data);
+        setSongs(data);
       } catch (error) {
         console.log(error);
       }
@@ -62,7 +71,7 @@ export function Home() {
         <h2>Ultimos albumes</h2>
         {albums && <Slider data={albums} basePath="albums" />}
         <h2>Ultimos canciones</h2>
-        {songs && <Slider data={songs} basePath="songs" />}
+        {songs && <Slider data={songs} song basePath="songs" />}
       </div>
     </div>
   );
