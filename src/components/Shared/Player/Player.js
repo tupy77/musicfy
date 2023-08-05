@@ -9,7 +9,10 @@ export function Player() {
 
   return (
     <div className="player">
-      <Icon name={playing ? "pause circle outline" : "play circle outline"} />
+      <Icon
+        name={playing ? "pause circle outline" : "play circle outline"}
+        onClick={playing ? pause : resume}
+      />
       <Progress progress="value" value={30} total={100} size="tiny" />
 
       <ReactPlayer

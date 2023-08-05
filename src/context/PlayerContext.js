@@ -16,9 +16,9 @@ export function PlayerProvider(props) {
 
     setSong(newSong.name);
     setMiniature(newMiniature);
+    setPlaying(true);
     // setSong(newSong);
     // setMiniature(newMiniature);
-    // setPlaying(true);
   };
 
   const pause = () => {
